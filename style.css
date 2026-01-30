@@ -2,14 +2,18 @@
         /* CORE RESET & LAYOUT */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        body {
+  body {
             background-color: #020617; /* Presentation Background */
             display: flex;
             justify-content: center;
-            align-items: center;
+            /* [수정됨] 세로 중앙 정렬(center) -> 상단 정렬(flex-start)로 변경하여 잘림 방지 */
+            align-items: flex-start; 
             min-height: 100vh;
             font-family: 'Pretendard', 'Inter', sans-serif;
-            overflow: hidden; /* Prevent body scroll, handle in widget if needed */
+            /* [수정됨] 스크롤 허용 (hidden -> auto) */
+            overflow: auto; 
+            /* [추가됨] 화면이 작을 때 여백 확보 */
+            padding: 20px;
         }
 
         .slide-container {
