@@ -431,3 +431,36 @@
             color: #FACC15;
             font-weight: 600;
         }
+
+
+/* 전체 배경은 이미 검정이라고 가정 */
+/* 번개 플래시 레이어 */
+.lightning-flash {
+  pointer-events: none;          /* 클릭 방해하지 않도록 */
+  position: fixed;
+  inset: 0;                      /* 화면 전체 덮기 */
+  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 60%),
+              radial-gradient(circle at 80% 30%, rgba(160,200,255,0.25), transparent 60%);
+  mix-blend-mode: screen;        /* 아래의 어두운 배경과 섞이게 */
+  opacity: 0;
+  z-index: 0;                    /* 필요하면 조정: 배경 위, 내용 아래 */
+  animation: lightning-flash 6s infinite;
+}
+
+/* 실제 번개가 치는 듯한 플래시 패턴 */
+@keyframes lightning-flash {
+  0%   { opacity: 0; }
+  8%   { opacity: 0; }
+  9%   { opacity: 0.85; }
+  11%  { opacity: 0.1; }
+  13%  { opacity: 0.7; }
+  16%  { opacity: 0; }
+
+  40%  { opacity: 0; }
+  41%  { opacity: 0.9; }
+  43%  { opacity: 0.2; }
+  46%  { opacity: 0.8; }
+  50%  { opacity: 0; }
+
+  100% { opacity: 0; }
+}
