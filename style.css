@@ -1,35 +1,36 @@
-
-        /* CORE RESET & LAYOUT */
+    /* CORE RESET & LAYOUT */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
-  body {
+        body {
             background-color: #020617; /* Presentation Background */
-            display: flex;
-            justify-content: center;
-            /* [수정됨] 세로 중앙 정렬(center) -> 상단 정렬(flex-start)로 변경하여 잘림 방지 */
-            align-items: flex-start; 
             min-height: 100vh;
             font-family: 'Pretendard', 'Inter', sans-serif;
-            /* [수정됨] 스크롤 허용 (hidden -> auto) */
-            overflow: auto; 
-            /* [추가됨] 화면이 작을 때 여백 확보 */
-            padding: 20px;
+            overflow-x: hidden; /* 가로 스크롤 방지 */
+            /* 중앙 정렬 제거하고 기본 흐름(block)을 따르되, 배경색 유지 */
+            display: block; 
         }
 
         .slide-container {
-            width: 1280px;
-            height: 720px;
+            /* [수정] 고정 크기 제거 -> 최대 크기 설정으로 반응형 대응 */
+            max-width: 1280px;
+            width: 100%;
+            min-height: 720px; /* 최소 높이만 설정 */
+            height: auto;      /* 콘텐츠에 따라 늘어남 */
+            
             background-color: #0F172A; /* Trust Navy */
             position: relative;
             overflow: hidden;
             display: flex;
+            
+            /* [수정] 화면 중앙 정렬을 위한 마진 설정 (위아래 여백 좀 줌) */
+            margin: 0 auto;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         /* LEFT CONTENT SIDE (60%) */
         .content-side {
             width: 60%;
-            padding: 0 0 0 80px; /* Left padding */
+            padding: 80px 40px 80px 80px; /* Padding 조정 */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -41,18 +42,17 @@
         .image-side {
             width: 40%;
             position: relative;
-            height: 100%;
+            min-height: 100%; /* 부모 높이 따라가도록 */
         }
 
         .image-side img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Filter adjusted for a more 'Intro' vibe - slightly less aggressive */
             filter: grayscale(100%) brightness(0.7) contrast(1.2) sepia(20%) hue-rotate(190deg) saturate(300%);
         }
 
-        /* Gradient Overlay to blend image with background */
+        /* Desktop Gradient (Left to Right) */
         .image-side::after {
             content: '';
             position: absolute;
@@ -61,11 +61,10 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(to right, #0F172A 10%, rgba(15, 23, 42, 0.6) 50%, rgba(15, 23, 42, 0) 100%);
+            pointer-events: none;
         }
 
         /* TYPOGRAPHY & ELEMENTS */
-        
-        /* Brand Header */
         .brand-header {
             display: flex;
             align-items: center;
@@ -83,6 +82,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            flex-shrink: 0;
         }
         
         .logo-box::after {
@@ -92,39 +92,17 @@
              right: -3px;
              width: 10px;
              height: 10px;
-             background-color: #2563EB; /* Tech Blue */
+             background-color: #2563EB; 
              border: 2px solid #0F172A;
              border-radius: 50%;
         }
 
-        .logo-icon {
-            color: #FACC15; /* Speed Yellow */
-            font-size: 26px;
-        }
+        .logo-icon { color: #FACC15; font-size: 26px; }
 
-        .brand-name {
-            display: flex;
-            flex-direction: column;
-        }
+        .brand-name { display: flex; flex-direction: column; }
+        .brand-title { color: #fff; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; }
+        .brand-subtitle { color: #2563EB; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
-        .brand-title {
-            color: #fff;
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            line-height: 1;
-        }
-
-        .brand-subtitle {
-            color: #2563EB; /* Tech Blue */
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 5px;
-        }
-
-        /* Main Copy */
         h1 {
             font-size: 58px;
             font-weight: 700;
@@ -132,42 +110,29 @@
             color: #fff;
             margin-bottom: 24px;
             letter-spacing: -1.5px;
+            word-break: keep-all; /* 단어 단위 줄바꿈 */
         }
 
-        h1 span {
-            color: #FACC15;
-            position: relative;
-            display: inline-block;
-        }
-        
+        h1 span { color: #FACC15; position: relative; display: inline-block; }
         h1 span::after {
-            content: '';
-            position: absolute;
-            bottom: 6px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background-color: rgba(250, 204, 21, 0.25);
-            z-index: -1;
+            content: ''; position: absolute; bottom: 6px; left: 0; width: 100%; height: 10px;
+            background-color: rgba(250, 204, 21, 0.25); z-index: -1;
         }
 
         .description {
             font-size: 19px;
             line-height: 1.6;
-            color: #94A3B8; /* Slate 400 */
+            color: #94A3B8;
             max-width: 90%;
             margin-bottom: 50px;
             font-weight: 400;
             border-left: 2px solid #2563EB;
             padding-left: 20px;
+            word-break: keep-all;
         }
 
-        .description strong {
-            color: #E2E8F0;
-            font-weight: 600;
-        }
+        .description strong { color: #E2E8F0; font-weight: 600; }
 
-        /* Feature Grid */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -184,90 +149,74 @@
         }
 
         .feature-icon {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             background-color: rgba(37, 99, 235, 0.15); 
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #60A5FA;
-            font-size: 20px;
-            margin-bottom: 16px;
+            display: flex; align-items: center; justify-content: center;
+            color: #60A5FA; font-size: 20px; margin-bottom: 16px;
         }
         
-        .feature-item:nth-child(2) .feature-icon {
-             background-color: rgba(250, 204, 21, 0.15); 
-             color: #FACC15;
-        }
-        
-        .feature-item:nth-child(3) .feature-icon {
-             background-color: rgba(255, 255, 255, 0.1);
-             color: #fff;
-        }
+        .feature-item:nth-child(2) .feature-icon { background-color: rgba(250, 204, 21, 0.15); color: #FACC15; }
+        .feature-item:nth-child(3) .feature-icon { background-color: rgba(255, 255, 255, 0.1); color: #fff; }
 
-        .feature-title {
-            color: #fff;
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
+        .feature-title { color: #fff; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+        .feature-text { color: #94A3B8; font-size: 14px; line-height: 1.45; word-break: keep-all; }
 
-        .feature-text {
-            color: #94A3B8;
-            font-size: 14px;
-            line-height: 1.45;
-        }
-
-        /* Footer Info - Replaces CTA Button */
         .footer-info {
-            display: flex;
-            align-items: center;
-            gap: 32px;
+            display: flex; align-items: center; gap: 32px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 24px;
-            max-width: 95%;
+            padding-top: 24px; max-width: 95%; flex-wrap: wrap;
         }
 
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #64748B;
-            font-size: 14px;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-        }
+        .info-item { display: flex; align-items: center; gap: 10px; color: #64748B; font-size: 14px; font-weight: 500; font-family: 'Inter', sans-serif; }
+        .info-item i { color: #2563EB; }
+        .info-item a { color: #94A3B8; text-decoration: none; transition: color 0.2s; }
+        .info-item a:hover { color: #fff; }
 
-        .info-item i {
-            color: #2563EB;
-        }
-        
-        .info-item a {
-            color: #94A3B8;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .info-item a:hover {
-            color: #fff;
-        }
-
-        /* Background Decor */
         .bg-glow {
-            position: absolute;
-            top: -250px;
-            left: -100px;
-            width: 800px;
-            height: 800px;
+            position: absolute; top: -250px; left: -100px;
+            width: 800px; height: 800px;
             background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, rgba(15,23,42,0) 70%);
-            z-index: 0;
-            pointer-events: none;
+            z-index: 0; pointer-events: none;
         }
 
-        /* --- GEMINI AI CHAT WIDGET STYLES --- */
+        /* --- MEDIA QUERIES FOR RESPONSIVE DESIGN --- */
+        @media (max-width: 1024px) {
+            .slide-container {
+                flex-direction: column; /* 세로 배치로 변경 */
+                height: auto; /* 높이 유동적 */
+            }
+
+            .content-side {
+                width: 100%;
+                padding: 60px 30px;
+                order: 1; /* 텍스트 먼저 */
+            }
+
+            .image-side {
+                width: 100%;
+                height: 300px; /* 이미지 높이 고정 */
+                order: 2; /* 이미지 나중에 */
+            }
+
+            /* Mobile Gradient (Top to Bottom) */
+            .image-side::after {
+                background: linear-gradient(to top, #0F172A 5%, rgba(15, 23, 42, 0.5) 40%, rgba(15, 23, 42, 0) 100%);
+            }
+
+            h1 { font-size: 42px; }
+            .description { font-size: 16px; max-width: 100%; }
+            .feature-grid { grid-template-columns: 1fr; gap: 16px; max-width: 100%; }
+            .footer-info { gap: 16px; flex-direction: column; align-items: flex-start; }
+            
+            /* 챗봇 위치 조정 */
+            .ai-fab { bottom: 20px; right: 20px; width: 56px; height: 56px; }
+            .ai-chat-window { bottom: 90px; right: 20px; width: calc(100% - 40px); height: 60vh; }
+        }
+
+        /* --- GEMINI AI CHAT WIDGET STYLES (Keep existing) --- */
         .ai-fab {
-            position: absolute;
+            position: fixed; /* absolute -> fixed로 변경하여 스크롤해도 따라오게 */
             bottom: 30px;
             right: 30px;
             width: 64px;
@@ -302,7 +251,7 @@
         }
 
         .ai-chat-window {
-            position: absolute;
+            position: fixed; /* absolute -> fixed */
             bottom: 110px;
             right: 30px;
             width: 380px;
