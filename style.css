@@ -450,17 +450,21 @@
 /* 실제 번개가 치는 듯한 플래시 패턴 */
 @keyframes lightning-flash {
   0%   { opacity: 0; }
-  8%   { opacity: 0; }
-  9%   { opacity: 0.85; }
-  11%  { opacity: 0.1; }
-  13%  { opacity: 0.7; }
-  16%  { opacity: 0; }
+  12%  { opacity: 0.5; }  /* 0.85 → 0.5 */
+  16%  { opacity: 0.15; } /* 0.7 → 0.15 */
+  20%  { opacity: 0; }
 
-  40%  { opacity: 0; }
-  41%  { opacity: 0.9; }
-  43%  { opacity: 0.2; }
-  46%  { opacity: 0.8; }
-  50%  { opacity: 0; }
+  60%  { opacity: 0.45; } /* 0.9 → 0.45 */
+  64%  { opacity: 0.12; } /* 0.2 → 0.12 */
+  70%  { opacity: 0; }
 
   100% { opacity: 0; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .lightning-flash {
+    animation: none;         /* 완전히 끄기 */
+    /* 또는 animation-duration: 20s; opacity 범위 더 줄이기 등으로 완화 */
+  }
+}
+
