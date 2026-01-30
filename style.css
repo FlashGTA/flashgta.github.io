@@ -459,12 +459,12 @@
   11.5% { opacity: 0.8; } /* 두 번째 번쩍 */
   12%  { opacity: 0; }    /* 다시 어둠 */
 
-  /* 2번째 번개() 
-  70%  { opacity: 0; }
-  70.5% { opacity: 0.9; }
-  71%  { opacity: 0.2; }
-  71.5% { opacity: 0.8; }
-  72%  { opacity: 0; }*/
+  /* 2번째 번개() */
+  15%  { opacity: 0; }
+  15.5% { opacity: 0.9; }
+  16%  { opacity: 0.2; }
+  16.5% { opacity: 0.8; }
+  17%  { opacity: 0; }
 
   100% { opacity: 0; }    /* 60초 끝 */
 }
