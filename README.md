@@ -1,2 +1,2 @@
-# flashgta.github.io
+# [flashgta.github.io](https://flashgta.github.io/)
 Launcher
