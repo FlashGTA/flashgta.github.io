@@ -444,7 +444,7 @@
   mix-blend-mode: screen;        /* 아래의 어두운 배경과 섞이게 */
   opacity: 0;
   z-index: 0;                    /* 필요하면 조정: 배경 위, 내용 아래 */
-  animation: lightning-flash 30s infinite;
+  animation: lightning-flash 15s infinite;
 }
 
 /* 60초 동안 2번, 각각 짧게 두 번씩 번쩍 */
@@ -452,14 +452,14 @@
   /* 기본은 어두움 */
   0%   { opacity: 0; }
 
-  /* 1번째 번개(12초 근처) */
-  20%  { opacity: 0; }    /* 12초 직전 */
-  20.5% { opacity: 0.9; } /* 첫 번쩍 */
-  21%  { opacity: 0.2; }
-  21.5% { opacity: 0.8; } /* 두 번째 번쩍 */
-  22%  { opacity: 0; }    /* 다시 어둠 */
+  /* 1번째 번개() */
+  10%  { opacity: 0; }    /* 12초 직전 */
+  10.5% { opacity: 0.9; } /* 첫 번쩍 */
+  11%  { opacity: 0.2; }
+  11.5% { opacity: 0.8; } /* 두 번째 번쩍 */
+  12%  { opacity: 0; }    /* 다시 어둠 */
 
-  /* 2번째 번개(42초 근처) 
+  /* 2번째 번개() 
   70%  { opacity: 0; }
   70.5% { opacity: 0.9; }
   71%  { opacity: 0.2; }
