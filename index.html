@@ -280,7 +280,7 @@
             displayHistory.push({ role: 'ai', text: cleanText });
             conversationHistory.push({ role: 'model', parts: [{ text: aiText }] });
 
-            if (inquirySummary === '') {
+            if (inquirySummary === '' && conversationHistory.length >= 1) {
                 inquirySummary = conversationHistory[0].parts[0].text;
             }
 
